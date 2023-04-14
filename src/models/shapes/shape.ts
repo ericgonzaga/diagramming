@@ -4,6 +4,10 @@ export abstract class Shape {
     id: string;
     centroid: Point;
 
+    constructor(centroid: Point) {
+        this.centroid = centroid;
+    }
+
     // TODO: rename parameters
     public move(x: number, y: number): void {
         this.centroid.x += x;
