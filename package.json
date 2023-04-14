@@ -1,0 +1,48 @@
+{
+    "name": "diagramming",
+    "version": "1.0.0",
+    "description": "Lasso MD Live Coding Exercise",
+    "main": "index.js",
+    "scripts": {
+        "start": "tsx watch src",
+        "start:prd": "node dist/index.js",
+        "build": "tsup src",
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ericgonzaga/diagramming.git"
+    },
+    "author": "Eric Gonzaga",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ericgonzaga/diagramming/issues"
+    },
+    "homepage": "https://github.com/ericgonzaga/diagramming#readme",
+    "devDependencies": {
+        "@types/express": "^4.17.17",
+        "@types/node": "^18.14.6",
+        "@types/supertest": "^2.0.12",
+        "@typescript-eslint/eslint-plugin": "^5.54.0",
+        "@typescript-eslint/parser": "^5.54.0",
+        "@vitest/coverage-c8": "^0.29.2",
+        "eslint": "^8.35.0",
+        "eslint-config-prettier": "^8.7.0",
+        "lint-staged": "^13.2.0",
+        "supertest": "^6.3.3",
+        "tsconfig-paths": "^4.1.2",
+        "tsup": "^6.6.3",
+        "tsx": "^3.12.3",
+        "vitest": "^0.29.2"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "class-validator": "^0.14.0",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "express-async-errors": "^3.1.1",
+        "http-status-codes": "^2.2.0",
+        "zod": "^3.21.0"
+    }
+}
