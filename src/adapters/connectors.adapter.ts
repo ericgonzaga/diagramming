@@ -1,7 +1,7 @@
-import { ConnectorRepository } from '@/repositories/maps/connectors.respository';
+import { InMemoryMapRepository } from '@/repositories/';
 import { ConnectorsUseCase } from '@/usecases';
 
-export const connectorsAdpter = () => {
-    const repository = new ConnectorRepository();
+export const connectorsAdapter = () => {
+    const repository = new InMemoryMapRepository.ConnectorsMemoryRepository();
     return new ConnectorsUseCase(repository);
 };

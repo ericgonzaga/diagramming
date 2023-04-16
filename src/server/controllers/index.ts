@@ -1,1 +1,2 @@
-export * as ShapesController from './shapes';
+export * from './shapes.controller';
+export * from './connectors.controller';

@@ -1,7 +1,7 @@
 import { Connector, Shape } from '@/models';
 import HashMap from 'hashmap';
 
-export class InMemoryMapRepository {
+export class InMemoryMap {
     public shapes: HashMap<string, Shape>;
     public connectors: HashMap<string, Connector>;
 
@@ -10,12 +10,12 @@ export class InMemoryMapRepository {
         this.connectors = new HashMap();
     }
 
-    private static instance: InMemoryMapRepository;
+    private static instance: InMemoryMap;
 
     public static getInstance() {
-        if (!InMemoryMapRepository.instance) {
-            InMemoryMapRepository.instance = new InMemoryMapRepository();
+        if (!InMemoryMap.instance) {
+            InMemoryMap.instance = new InMemoryMap();
         }
-        return InMemoryMapRepository.instance;
+        return InMemoryMap.instance;
     }
 }

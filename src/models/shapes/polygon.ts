@@ -1,10 +1,13 @@
 import { Point } from './point';
-import { Segment } from './segment';
 import { Shape } from './shape';
 
 export class Polygon extends Shape {
     vertices: Point[];
-    segments: Segment[];
+
+    constructor(centroid: Point, vertices: Point[]) {
+        super(centroid);
+        this.vertices = vertices;
+    }
 
     resize(percent: number): void {
         // TODO: error if percent <= 0

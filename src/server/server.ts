@@ -18,6 +18,7 @@ server.get('/info', (req, res) => {
 });
 
 server.use('/shapes', shapesRouter);
+server.use('/connectors', shapesRouter);
 
 server.use(ErrorMiddleware.middleware);
 
