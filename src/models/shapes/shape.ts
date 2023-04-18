@@ -8,10 +8,9 @@ export abstract class Shape {
         this.centroid = centroid;
     }
 
-    // TODO: rename parameters
-    public move(x: number, y: number): void {
-        this.centroid.x += x;
-        this.centroid.y += y;
+    public move(moveX: number, moveY: number): void {
+        this.centroid.x += Math.round(moveX);
+        this.centroid.y += Math.round(moveY);
     }
 
     protected checkPercentIsValid(percent: number): boolean {

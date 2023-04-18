@@ -1,5 +1,6 @@
 import { Connector, ConnectorType, Shape } from '@/models';
 import { IConnectorsRepository } from './connectors.irepository';
+import { ShapesUseCase } from '../shapes';
 
 export class ConnectorsUseCase {
     constructor(private readonly repository: IConnectorsRepository) {}

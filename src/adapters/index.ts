@@ -1,2 +1,2 @@
-export * from './connectors.adapter';
-export * from './shapes.adapter';
+export * as ConnectorsAdapter from './connectors.adapter';
+export * as ShapesAdapter from './shapes.adapter';

@@ -19,6 +19,7 @@ export class ShapesMemoryRepository implements IShapesRepository {
     }
 
     listByRange(start: Point, stop: Point): Promise<Shape[]> {
+        // TOOD: implement this method
         throw new Error('Method not implemented.');
     }
 

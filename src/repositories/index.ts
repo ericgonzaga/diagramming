@@ -1,1 +1,1 @@
-export * as InMemoryMapRepository from './maps';
+export * as InMemoryMapRepository from './map';

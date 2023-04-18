@@ -31,18 +31,16 @@ export class ShapesUseCase {
         return this.repository.listAll();
     }
 
-    // TODO: rename x and y arguments
-    async move(id: string, x: number, y: number) {
+    async move(id: string, moveX: number, moveY: number) {
         const shape = await this.repository.getById(id);
         if (shape) {
-            shape.move(x, y);
+            shape.move(moveX, moveY);
         }
     }
 
-    // TODO: rename x and y arguments
-    async moveGroup(start: Point, stop: Point, x: number, y: number) {
+    async moveGroup(start: Point, stop: Point, moveX: number, moveY: number) {
         const shapes = await this.repository.listByRange(start, stop);
-        shapes.forEach((s) => s.move(x, y));
+        shapes.forEach((s) => s.move(moveX, moveY));
     }
 
     async resize(id: string, percent: number) {

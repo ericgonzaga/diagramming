@@ -2,7 +2,7 @@ import 'express-async-errors';
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { ErrorMiddleware } from './middleware';
-import { shapesRouter } from './routers';
+import { shapesRouter, connectorsRouter } from './routers';
 
 const server = express();
 server.use(express.json());
@@ -18,7 +18,7 @@ server.get('/info', (req, res) => {
 });
 
 server.use('/shapes', shapesRouter);
-server.use('/connectors', shapesRouter);
+server.use('/connectors', connectorsRouter);
 
 server.use(ErrorMiddleware.middleware);
 
