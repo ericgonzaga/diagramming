@@ -16,11 +16,12 @@ For this problem, I assumed:
 -   For the arrow connectors, we assumed their direction from Shape A to Shape B.
 -   The meaning of “contained” for multi-selection will be considered all shapes whose centroids are inside the range (just to simplify the search).
 -   The first chosen strategy to find out which shapes are within the multi-selection range was the simplest:
-    test each shape in the array if their centroids are within the range, without using any index -> (startX <= x <= stopX) and (startY >= y >= stopY)
-    -   start = left-top and stop = right-bottom.
+    test each shape in the array if their centroids are within the range, without using any index
+    -   start = left-top and stop = right-bottom -> (startX <= x <= stopX) and (startY >= y >= stopY).
 
 Next steps:
 
+-   Document all API using Swagger.
 -   Develop different strategies to search for polygons inside the region in the multi-selection range and compare then with the original using the JMeter script
     -   The second strategy will be create an index for one of the coordinates (x or y), using a tree. For all polygons within the range, the second coordinate should be tested.
     -   The third strategy will be create indexes for both coordinates (x and y) and make the intersection between the arrays found for both axis.
