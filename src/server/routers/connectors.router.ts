@@ -6,7 +6,8 @@ const connectorsRouter = Router();
 
 connectorsRouter.get('/', ConnectorsController.listAll);
 connectorsRouter.get('/:id', ValidationMiddleware.idValidator, ConnectorsController.getById);
-connectorsRouter.post('/', CreateConnectorsController.createValidator, CreateConnectorsController.create);
+connectorsRouter.post('/arrow', CreateConnectorsController.createValidator, CreateConnectorsController.createArrow);
+connectorsRouter.post('/line', CreateConnectorsController.createValidator, CreateConnectorsController.createLine);
 connectorsRouter.delete('/:id', ValidationMiddleware.idValidator, ConnectorsController.deleteById);
 
 export { connectorsRouter };

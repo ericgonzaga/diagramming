@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import { IdSchema } from './validation.types';
+import { IdBodySchema } from './validation.types';
 
 type TProperty = 'header' | 'body' | 'params' | 'query';
 
@@ -42,4 +42,4 @@ export const validation: TValidation = (schemas) => async (req: Request, res: Re
     return Object.entries(errorsReturn).length === 0 ? next() : res.status(StatusCodes.BAD_REQUEST).json({ errors: errorsReturn });
 };
 
-export const idValidator = validation({ params: IdSchema });
+export const idValidator = validation({ params: IdBodySchema });

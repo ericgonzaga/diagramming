@@ -1,9 +1,9 @@
-import { Point, Shape } from '@/models';
+import { Point, Shape } from '../../models';
 
 export interface IShapesRepository {
     getById(id: string): Promise<Shape | undefined>;
     listAll(): Promise<Shape[]>;
     listByRange(start: Point, stop: Point): Promise<Shape[]>;
-    create(shape: Shape): Promise<string>;
+    create(shape: Shape): Promise<Shape>;
     deleteById(id: string): Promise<void>;
 }

@@ -1,7 +1,7 @@
-import { Connector } from '@/models';
-import { IConnectorsRepository } from '@/usecases';
+import { generateHash } from '../../helpers';
+import { Connector } from '../../models';
+import { IConnectorsRepository } from '../../usecases';
 import { InMemoryMap } from './InMemoryMap';
-import { generateHash } from '@/helpers';
 
 export class ConnectorsMemoryRepository implements IConnectorsRepository {
     memory: InMemoryMap;
@@ -18,10 +18,10 @@ export class ConnectorsMemoryRepository implements IConnectorsRepository {
         return Promise.resolve(this.memory.connectors.values());
     }
 
-    create(connector: Connector): Promise<string> {
+    create(connector: Connector): Promise<Connector> {
         connector.id = generateHash();
         this.memory.connectors.set(connector.id, connector);
-        return Promise.resolve(connector.id);
+        return Promise.resolve(connector);
     }
 
     deleteById(id: string): Promise<void> {

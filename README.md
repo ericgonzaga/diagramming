@@ -16,7 +16,8 @@ For this problem, I assumed:
 -   For the arrow connectors, we assumed their direction from Shape A to Shape B.
 -   The meaning of “contained” for multi-selection will be considered all shapes whose centroids are inside the range (just to simplify the search).
 -   The first chosen strategy to find out which shapes are within the multi-selection range was the simplest:
-    test each shape in the array if their centroids are within the range, without using any index -> (startX < x < stopX) and (startY < y < stopY).
+    test each shape in the array if their centroids are within the range, without using any index -> (startX <= x <= stopX) and (startY >= y >= stopY)
+    -   start = left-top and stop = right-bottom.
 
 Next steps:
 
@@ -33,3 +34,4 @@ To execute this project:
 -   start: npm run start -> will be executed at localhost:4000 (port can be changed in the .env file)
 -   execute all tests: npm run test
 -   get tests coverage: npm run test:coverage
+-   execute JMeter script using JMeter 3.5

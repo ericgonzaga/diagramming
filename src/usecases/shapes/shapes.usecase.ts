@@ -1,21 +1,22 @@
-import { Circle, Point, Polygon, Shape } from '@/models';
+import { Circle, Point, Polygon, Shape } from '../../models';
 import { IShapesRepository } from './shapes.irepository';
 
 export class ShapesUseCase {
     constructor(private readonly repository: IShapesRepository) {}
 
-    async createPolygon(centroid: Point, vertices: Point[]) {
+    async createPolygon(centroid: Point, vertices: Point[]): Promise<Shape> {
         const polygon = new Polygon(centroid, vertices);
         return this.repository.create(polygon);
     }
 
-    async createCircle(centroid: Point, radio: number): Promise<string> {
+    async createCircle(centroid: Point, radio: number): Promise<Shape> {
         const circle = new Circle(centroid, radio);
         return this.repository.create(circle);
     }
 
     async deleteById(id: string) {
         this.repository.deleteById(id);
+        // TODO: delete all connectors linked to the shape when it's deleted.
     }
 
     async deleteGroup(start: Point, stop: Point) {

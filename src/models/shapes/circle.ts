@@ -1,4 +1,4 @@
-import { ErrorMessages, InputError } from '../../shared';
+import { ErrorMessages, InvalidInputError } from '../../shared';
 import { Point } from './point';
 import { Shape } from './shape';
 
@@ -12,7 +12,7 @@ export class Circle extends Shape {
 
     resize(percent: number): void {
         if (!this.checkPercentIsValid(percent)) {
-            throw new InputError(ErrorMessages.ResizePercentErrorMsg);
+            throw new InvalidInputError(ErrorMessages.ResizePercentErrorMsg);
         }
 
         this.radio = Math.round(this.radio * percent);

@@ -2,24 +2,15 @@ import z from 'zod';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import { ValidationMiddleware } from '../middleware';
-import { ShapesAdapter } from '@/adapters';
-import { Polygon } from '@/models';
+import { PointSchema, ValidationMiddleware } from '../middleware';
+import { ShapesAdapter } from '../../adapters';
+import { Polygon } from '../../models';
 
 type PolygonInputDTO = Omit<Polygon, 'id' | 'resize' | 'move'>;
 
 const PolygonBodySchema: z.ZodType<PolygonInputDTO> = z.object({
-    centroid: z.object({
-        x: z.number().int(),
-        y: z.number().int(),
-    }),
-    vertices: z
-        .object({
-            x: z.number().int(),
-            y: z.number().int(),
-        })
-        .array()
-        .min(3),
+    centroid: PointSchema,
+    vertices: PointSchema.array().min(3),
 });
 
 export const createPolygonValidator = ValidationMiddleware.validation({ body: PolygonBodySchema });

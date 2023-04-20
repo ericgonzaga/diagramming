@@ -1,7 +1,7 @@
-import { Shape, Point } from '@/models';
-import { IShapesRepository } from '@/usecases';
+import { generateHash } from '../../helpers';
+import { Point, Shape } from '../../models';
+import { IShapesRepository } from '../../usecases';
 import { InMemoryMap } from './InMemoryMap';
-import { generateHash } from '@/helpers';
 
 export class ShapesMemoryRepository implements IShapesRepository {
     memory: InMemoryMap;
@@ -19,14 +19,14 @@ export class ShapesMemoryRepository implements IShapesRepository {
     }
 
     listByRange(start: Point, stop: Point): Promise<Shape[]> {
-        // TOOD: implement this method
-        throw new Error('Method not implemented.');
+        const list = [...this.memory.shapes.values()].filter((s) => s.centroid.x >= start.x && s.centroid.x <= stop.x && s.centroid.y <= start.y && s.centroid.y >= stop.y);
+        return Promise.resolve(list);
     }
 
-    create(shape: Shape): Promise<string> {
+    create(shape: Shape): Promise<Shape> {
         shape.id = generateHash();
         this.memory.shapes.set(shape.id, shape);
-        return Promise.resolve(shape.id);
+        return Promise.resolve(shape);
     }
 
     deleteById(id: string): Promise<void> {

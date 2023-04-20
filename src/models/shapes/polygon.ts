@@ -1,6 +1,6 @@
 import { Point } from './point';
 import { Shape } from './shape';
-import { InputError, ErrorMessages } from '../../shared';
+import { InvalidInputError, ErrorMessages } from '../../shared';
 
 export class Polygon extends Shape {
     vertices: Point[];
@@ -12,7 +12,7 @@ export class Polygon extends Shape {
 
     resize(percent: number): void {
         if (!this.checkPercentIsValid(percent)) {
-            throw new InputError(ErrorMessages.ResizePercentErrorMsg);
+            throw new InvalidInputError(ErrorMessages.ResizePercentErrorMsg);
         }
 
         this.vertices.forEach((v) => {

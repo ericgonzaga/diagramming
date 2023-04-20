@@ -1,38 +1,41 @@
 import { z } from 'zod';
-import { ConnectorType } from '@/models';
-import { ValidationMiddleware } from '../middleware';
+import { ConnectorType } from '../../models';
+import { IdSchema, ValidationMiddleware } from '../middleware';
 import { Request, Response } from 'express';
-import { ConnectorsAdapter, ShapesAdapter } from '@/adapters';
+import { ConnectorsAdapter, ShapesAdapter } from '../../adapters';
 import { StatusCodes } from 'http-status-codes';
+import { InputNotFoundError } from '../../shared';
 
 type ConnectorCreateInputDTO = {
     shapeA: string;
     shapeB: string;
-    type: ConnectorType;
 };
 
 const ConnectorCreateBodySchema: z.ZodType<ConnectorCreateInputDTO> = z.object({
-    shapeA: z.string().min(3),
-    shapeB: z.string().min(3),
-    type: z.nativeEnum(ConnectorType),
+    shapeA: IdSchema,
+    shapeB: IdSchema,
 });
 
 export const createValidator = ValidationMiddleware.validation({ body: ConnectorCreateBodySchema });
 
-export const create = async (req: Request<{}, {}, ConnectorCreateInputDTO>, res: Response) => {
+export const createLine = async (req: Request<{}, {}, ConnectorCreateInputDTO>, res: Response) => {
+    return create(req, res, ConnectorType.Line);
+};
+
+export const createArrow = async (req: Request<{}, {}, ConnectorCreateInputDTO>, res: Response) => {
+    return create(req, res, ConnectorType.Arrow);
+};
+
+export const create = async (req: Request<{}, {}, ConnectorCreateInputDTO>, res: Response, type: ConnectorType) => {
+    // TODO: move this code to the UC
     const shapesUC = ShapesAdapter.getShapesUseCase();
-
-    console.log(req.body.shapeA);
     const objShapeA = await shapesUC.getById(req.body.shapeA);
-    console.log(objShapeA);
-
     const objShapeB = await shapesUC.getById(req.body.shapeB);
 
-    // TODO: create error treatment
     if (!objShapeA || !objShapeB) {
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json();
+        throw new InputNotFoundError('Shape id not found.');
     }
 
-    const id = await ConnectorsAdapter.getConnectorsUseCase().create(objShapeA, objShapeB, req.body.type);
-    return res.status(StatusCodes.CREATED).json(id);
+    const connector = await ConnectorsAdapter.getConnectorsUseCase().create(objShapeA, objShapeB, type);
+    return res.status(StatusCodes.CREATED).json(connector);
 };

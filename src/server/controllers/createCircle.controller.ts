@@ -1,19 +1,15 @@
 import z from 'zod';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-
-import { ValidationMiddleware } from '../middleware';
-import { ShapesAdapter } from '@/adapters';
-import { Circle } from '@/models';
+import { PointSchema, ValidationMiddleware } from '../middleware';
+import { ShapesAdapter } from '../../adapters';
+import { Circle } from '../../models';
 
 type CircleInputDTO = Omit<Circle, 'id' | 'resize' | 'move'>;
 
 const CircleBodySchema: z.ZodType<CircleInputDTO> = z.object({
     radio: z.number().min(1),
-    centroid: z.object({
-        x: z.number().int(),
-        y: z.number().int(),
-    }),
+    centroid: PointSchema,
 });
 
 export const createCircleValidator = ValidationMiddleware.validation({ body: CircleBodySchema });

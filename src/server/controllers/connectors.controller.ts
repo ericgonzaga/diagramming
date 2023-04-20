@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { ConnectorsAdapter } from '@/adapters';
+import { ConnectorsAdapter } from '../../adapters';
 
 export const listAll = async (req: Request, res: Response) => {
     const list = await ConnectorsAdapter.getConnectorsUseCase().listAll();

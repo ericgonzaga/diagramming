@@ -1,4 +1,4 @@
-import { Connector, Shape } from '@/models';
+import { Connector, Shape } from '../../models';
 import HashMap from 'hashmap';
 
 export class InMemoryMap {

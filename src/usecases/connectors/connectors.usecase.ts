@@ -1,6 +1,5 @@
-import { Connector, ConnectorType, Shape } from '@/models';
 import { IConnectorsRepository } from './connectors.irepository';
-import { ShapesUseCase } from '../shapes';
+import { Connector, ConnectorType, Shape } from '../../models';
 
 export class ConnectorsUseCase {
     constructor(private readonly repository: IConnectorsRepository) {}
@@ -10,10 +9,10 @@ export class ConnectorsUseCase {
     }
 
     async listAll(): Promise<Connector[]> {
-        return this.listAll();
+        return this.repository.listAll();
     }
 
-    async create(shapeA: Shape, shapeB: Shape, type: ConnectorType): Promise<string> {
+    async create(shapeA: Shape, shapeB: Shape, type: ConnectorType): Promise<Connector> {
         const connector = new Connector(shapeA, shapeB, type);
         return this.repository.create(connector);
     }
